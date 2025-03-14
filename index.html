@@ -19,7 +19,7 @@
         .clock {
             display: flex;
             gap: 10px;
-            font-size: 65px;
+            font-size: 55px;
             font-weight: bold;
             color: white;
         }
@@ -47,7 +47,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.5);
         }
         .big-text {
-            font-size: 65px;
+            font-size: 50px;
             font-family: 'DSEG7 Classic', Arial, sans-serif;
         }
         .small-text {
@@ -84,8 +84,20 @@
             document.getElementById('day').textContent = day;
             document.getElementById('ampm').textContent = ampm;
         }
-        setInterval(updateClock, 1000);
+        let clockInterval = setInterval(updateClock, 1000);
         updateClock();
+    document.getElementById('hours').addEventListener('click', function() {
+            clearInterval(clockInterval);
+document.getElementById('ampm').style.display = 'none';
+            let currentHour = parseInt(this.textContent, 10);
+            if (currentHour <= 12) {
+                this.textContent = (currentHour + 12).toString().padStart(2, '0');
+                document.getElementById('ampm').style.display = 'none';
+            } else {
+                this.textContent = (currentHour - 12).toString().padStart(2, '0');
+                document.getElementById('ampm').style.display = 'inline';
+            }
+        });
     </script>
 </body>
 </html>
