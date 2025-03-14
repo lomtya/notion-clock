@@ -10,36 +10,41 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #d4e6b5;
+            background-color: #c0d9a6;
             font-family: Arial, sans-serif;
         }
         .clock {
             display: flex;
-            gap: 10px;
+            gap: 5px;
             font-size: 80px;
             font-weight: bold;
-            background: #a3c37d;
             color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
         }
         .block {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 100px;
-            height: 120px;
-            background: #76a35d;
-            border-radius: 10px;
+            width: 150px;
+            height: 180px;
+            background: #a5c478;
+            border-radius: 5px;
             text-align: center;
+            position: relative;
+        }
+        .flip {
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            top: 50%;
+            transform: translateY(-50%);
         }
         .big-text {
-            font-size: 60px;
+            font-size: 70px;
         }
         .small-text {
-            font-size: 18px;
+            font-size: 20px;
             margin-top: 5px;
         }
     </style>
@@ -48,13 +53,16 @@
     <div class="clock">
         <div class="block">
             <span id="hours" class="big-text">00</span>
-            <span id="ampm" class="small-text">AM</span>
+            <span class="small-text">AM</span>
+            <div class="flip"></div>
         </div>
         <div class="block">
             <span id="minutes" class="big-text">00</span>
+            <div class="flip"></div>
         </div>
         <div class="block">
             <span id="day" class="big-text">Monday</span>
+            <div class="flip"></div>
         </div>
     </div>
     
@@ -69,7 +77,6 @@
             document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
             document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
             document.getElementById('day').textContent = day;
-            document.getElementById('ampm').textContent = ampm;
         }
         setInterval(updateClock, 1000);
         updateClock();
